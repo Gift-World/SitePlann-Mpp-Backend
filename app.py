@@ -27,7 +27,7 @@ def upload_excel():
         task_names = df['Task Name'].tolist()  # Extract 'Task Name' column
 
         # Save extracted data to Supabase (if needed)
-        data = [{'task_name': task} for task in task_names]
+        data = [{'title': task} for task in task_names]
         supabase.table('tasks').insert(data).execute()
 
         return jsonify({'task_names': task_names}), 200
