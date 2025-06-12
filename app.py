@@ -24,13 +24,13 @@ def upload_excel():
     try:
         # Load Excel file into a pandas DataFrame
         df = pd.read_excel(file)
-        task_names = df['Task Name'].tolist()  # Extract 'Task Name' column
+        titles = df['Task Name'].tolist()  # Extract 'Task Name' column
 
         # Save extracted data to Supabase (if needed)
-        data = [{'title': task} for task in task_names]
+        data = [{'title': task} for task in titles]
         supabase.table('tasks').insert(data).execute()
 
-        return jsonify({'task_names': task_names}), 200
+        return jsonify({'titles': titles}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
